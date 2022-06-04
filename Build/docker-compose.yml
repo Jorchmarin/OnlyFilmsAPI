@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  api:
+    build: ../src/ .
+    ports:
+        - '7050:7050'
+    environment:
+      - 'ASPNETCORE_URLS=http://+:7050'
+    restart: always
+    depends_on:
+      - mssql
+    networks:
+      - back
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    volumes:
+      - ../volumes/db:/var/opt/mssql/data
+      - ../DataBase/initdb.sql:/docker-entrypoint-initdb.d/1sql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=mssql1Ipw
+    networks:
+      - back
+networks:
+      back:
