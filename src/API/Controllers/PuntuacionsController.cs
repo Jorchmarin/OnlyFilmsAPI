@@ -43,7 +43,8 @@ namespace API.Controllers
                 sum += item.Puntuacion1;
                 count++;
             }
-               return average = sum / count;
+            average = sum / count;
+            return decimal.Round(average, 2);
         }
 
         // GET: api/Puntuacions/5

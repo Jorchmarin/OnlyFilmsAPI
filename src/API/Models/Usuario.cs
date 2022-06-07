@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -17,9 +16,6 @@ namespace API.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress]
         public string Email { get; set; }
         public string Password { get; set; }
         public string Nick { get; set; }

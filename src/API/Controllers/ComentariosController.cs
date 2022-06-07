@@ -108,11 +108,19 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Comentario>> PostComentario(Comentario comentario)
         {
-            comentario.Fecha = DateTime.Now;
-            _context.Comentarios.Add(comentario);
-            await _context.SaveChangesAsync();
+            if(comentario.Description.Length >= 7)
+            {
+                comentario.Fecha = DateTime.Now;
+                _context.Comentarios.Add(comentario);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetComentario", new { id = comentario.Id }, comentario);
+                return CreatedAtAction("GetComentario", new { id = comentario.Id }, comentario);
+            }
+            else
+            {
+                return BadRequest();
+            }
+           
         }
 
         // DELETE: api/Comentarios/5

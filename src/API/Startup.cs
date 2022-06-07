@@ -38,7 +38,7 @@ namespace API
             });
             services.AddControllers();
             services.AddDbContext<OnlyFilmsContext>(
-            options => options.UseSqlServer("Data Source=mssql;Persist Security Info=True;User ID=sa;Password=mssql1Ipw"));
+            options => options.UseSqlServer("Data Source=localhost;Persist Security Info=True;User ID=sa;Password=mssql1Ipw"));
             
             services.AddSwaggerGen(c =>
             {
@@ -51,11 +51,10 @@ namespace API
         {
             if (env.IsDevelopment())
             {
-                }
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
-           
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+            }
 
             app.UseCors("Mi Politica de Cors");
 
